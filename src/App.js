@@ -11,8 +11,17 @@ function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
 
+	// MAKING FUNCTION TO ALLOW USER TO ADD ITEMS TO CART
+		// NEED TO MAKE AN OBJECT WITH THE PROPERTIES THAT THIS NEW ITEM WILL HAVE <NEWITEM>
+		// SETCART AS WHATEVER IS IN THE CARD PLUS THE NEW ITEM WE ADD TO IT
 	const addItem = item => {
-		// add the given item to the cart
+		const newItem = {
+			id: Date.now(),
+			title: item.title,
+			price: item.price,
+			image: item.image
+		};
+		setCart([...cart, newItem]);
 	};
 
 	return (

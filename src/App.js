@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import data from './data';
 
@@ -19,19 +19,20 @@ function App() {
 		// NEED TO MAKE AN OBJECT WITH THE PROPERTIES THAT THIS NEW ITEM WILL HAVE <NEWITEM>
 		// SETCART AS WHATEVER IS IN THE CARD PLUS THE NEW ITEM WE ADD TO IT
 	const addItem = item => {
-		const newItem = {
-			id: Date.now(),
-			title: item.title,
-			price: item.price,
-			image: item.image
-		};
-		setCart([...cart, newItem]);
+		setCart([...cart, item]);
 	};
+
+	const removeItem = item => {
+		const deletedItem = cart.filter(element => {
+			return item !== element.id
+		})
+			setCart([...cart], deletedItem)
+	}
 
 	return (
 		<div className="App">
 			<ProductContext.Provider value={{products, addItem}}>
-				<CartContext.Provider value={{cart}}>
+				<CartContext.Provider value={{cart, removeItem}}>
 					<Navigation />
 
 					{/* Routes */}

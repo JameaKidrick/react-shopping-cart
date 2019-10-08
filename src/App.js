@@ -26,7 +26,7 @@ function App() {
 		const deletedItem = cart.filter(element => {
 			return item !== element.id
 		})
-			setCart([...cart], deletedItem)
+			setCart(deletedItem)
 	}
 
 	return (
